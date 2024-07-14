@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href ="login.css">
+</head>
+<body>
+    <form id="frm_login" action="./trangchu.html">
+        <h1> Log In </h1>
+        <input type="text" id="userName" placeholder="Enter name"/>
+        <input type="password" id="password" placeholder="Enter the password"/>
+        <!-- <input type="text" id="age" placeholder="Enter the your age"/>
+        <input type="text" id="role" placeholder="Enter the your role"/> -->
+        <div class="input-phu">
+            <a class="haimot" href="register.html"> REGISTER </a>
+            <a class="haihai" href="#"> FORGET YOUR MASK </a>
+        </div>
+        <button type="submit"> Log In </button>
+        <!-- <button type="button" id="test"> Log In </button> -->
+    </form>
+</body>
+<script>
+    var frm_login=document.getElementById("frm_login");
+        frm_login.addEventListener("submit",function(){ 
+            let userName=document.getElementById("userName").value;
+            let password=document.getElementById("password").value;
+            let users= JSON.parse(localStorage.getItem("users")); 
+            for(let i=0;i<users.length;i++)
+            {
+                if(users[i].userName==userName && users[i].password==password)
+                {
+                    localStorage.setItem("currentUser",JSON.stringify(users[i]));
+                    alert("Đăng nhập thành công");
+                    window.location.href="./trangchu.html";
+                    return;
+                }
+            }
+            alert("Sai tài khoản mật khẩu")
+        })
+//         var test=document.getElementById("test");
+//         test.addEventListener("click",function(){
+//             let userName=document.getElementById("userName").value;
+//             let password=document.getElementById("password").value;
+//             let users= JSON.parse(localStorage.getItem("users"));
+//             for(let i=0;i<users.length;i++)
+//             {
+//                 if(users[i].userName==userName && users[i].password==password)
+//                 {
+//                     alert("Đăng nhập thành công");
+//                     //window.location.href="/logup.html";
+//                     // window.location.href="file:///C:/web/JSI01/baicuoikhoa/trangchu/trangchu.html";
+//                     return;
+//                 }
+//             }
+//             alert("Sai tài khoản mật khẩu")
+//         })
+
+//         // chức năng khi người dùng bấm vào nút đăng nhập sẽ lựu thông tin của người dùng đó vào localstorge với key là currentUser
+//         document.getElementById('login-form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+    
+//     const userName = document.getElementById('userName').value;
+//     const password = document.getElementById('password').value;
+//     const age = document.getElementById('age').value;
+//     const role = document.getElementById('role').value;
+
+//     const currentUser = {
+//       userName: userName,
+//       password: password,
+//       age: age,
+//       role: role
+//     };
+
+//     localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+//     // Thông báo người dùng đã đăng nhập thành công
+//     alert('Đăng nhập thành công!');
+//   });
+</script>
+</html>

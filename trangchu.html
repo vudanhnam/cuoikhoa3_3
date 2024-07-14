@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="trangchu.css">
+    <script src="https://kit.fontawesome.com/666b5872f9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="menu_menu-1">   
+        <div class="trangchu bar">
+            <!-- <div class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAA1VBMVEX////tHCTsAAAAAAAmEhLsABHsAAT6ycr1lpj4u735wsP//PztCxftFx/uNz30iYz84OD/1dbJysrtEhzzd3vuLTT95+j1kpX82tuenp7sAAttbW22trb6zM3d3d2YmJj+9fXvQUf3qavxWl/m5ubz8/PPz8/xYWX2oKLwU1jzgIP4s7X+7O26uro8PDxVVVWoqKgrKyvya2/uJy5iYmIzMzPwS1DvPkMSAADyaGyHh4dMTExeXl4hISGBgYEXFxd9dXVBMzMwHh4dAABbUVFIPDwOAACQQDkmAAAMEElEQVR4nO2di1bbuhKGE+k4BWIDxZAEA0kKJKUQKBCgJb3QfXp23/+RjqyR7NHFTgrOcmDNt7p2G9mx5rfuyox2o0EQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQxAK06zYAsxnEJsFf0nJhx3WrwrxnzaqJv9QtyuQ2rFohe1+3JpNJ1YUY3tYtyWYtqVYhm9StyKEZVSkwWatbj8t6lfU0atYtx8dDXJ1Ctl63Gh+96goxfqhbjJ/dykYM1qtbi59hVYUY7tYtpYizVjUK2bBuJYVMKxkxWmd16yjmnVVPA/YcVnKk0HwyRozgbGMh3hlsbNetooyOUYjxys0tK+A8MLqMFe31X0LbmIDHJ3XbswSOjXq6aou8StjDI0b8qW5zlsCRWYhHdduzBD7i6al3Dj3prhWwtXrrXg/mhgZ7595xywp23NgrqdRbeMSI3C2z4mUW69Rg7jNoh7izYRv29Q9FS+Vgqw5zn8MFLqRo07pavN0RrtQudylfjEK0diSiogUIu6jH2udgbIFHU+Nal4UCs+wkgV3YK42xBW6UTft2V3A+RdenuzLt9lVNYo0Rw7M1iLvT1dxXm4uxBe7+irSZt8VV3VebC94CjyLrIu5sX+0KyxgTWmYh4iXW6u6rzcXYAg+NS3iZvML7avPYxoWYnBVcWeV9tbkYW+AJmq6g0rXGyleGsQWOfi3DLdSdtL4qjC1wlhUi6mVf/RYA3gIPuioRj5RspbdGF2AD11PVaeLZTnBer30VgLfA1eIP73Ekr2e1VMS2U4h4n2q1XIKeCR7bw7ROor3GaK9u66rA2AJnE2O/+I1sNGJJYgqKP32s27aKwFvg4UfU87yWfbW5HBX9Dvpq9tXm8t7P0esfKTJ2vIzqNqtCfnEP/9RtVZW0v/7HgffrtqpSrrkt8Ouvum2qmH9+20X4llphytgqxD/7dVtUOXdmIf63bnuq59QoRL5Ttz1LYIb609//q9uapYCqKT+t25ilcJjV068/67ZlSfyrS/HrG5qQGvRVIfLrui1ZGgeyEH+/qQmpyUgWIh/XbccSGfwRRfi9biuWytsdKTSX/OusbhuWzL9/6rZg2fTf7khBEARBEARBEM+id/a4GTIW7H1c80afvStCex90jFSf69Nww/5qb+hetr/ZhmTpdbvu9b3tFeaInnI2ZQlEhURxwOLu0LmlMIZXe5BceFMNSzzfnm7lljVliu2/fww3yte+4XUvvpU3dD1X8oe0EiMiIgqY4wRadJBJ9EErNO7whSFuewJLRFaPQ/0E6fdne75JB3HlGr7BfBKl02dQcnDI8MGTc2vTiin7S4Xh42IK01sTbbV0NgpN1zfw8Vfe/Rss8kicp7AXIPdW5CZpPeovFfpOmylQ2Mys7kqJpu+bNF9HN2wwcbNTO+Yo7DGlKkpYazoNWCu28sUKQ4dEtxvdDtXjArddKIXoyzrrAESBF2PLCEeRSdqlWro+OhLLFU6URRH7ciwdeibrJ1kS9vCRCsPdLQf95MmR9Cnp6cCKuEBhnH91d5PB69ROmTLwJqsV8r1B2xwihY7EcoV7kEUYIefk3qasLWwXVxepcAH/1yw2xg2MAYUtI+kEvIqVBNXoUC4yYixrmsp91fKPK1XYhcoXPJg/nty2RDs0LQSF82NBsvgnoyiwQjMr8GVMVM38YAhyJGsHXTNMtUyhct8NHefrR+btS+crhCdG3pu9CsFxWkeZgM97kl08T43PfcMzF2RDYplCiG71BQg4PmgLKpTdYbSJrc7wKzwLcIHHEe5roJ/J3ftzJ2vs8l+mEOroQnFICyqEIQ0Oy7CDY/wKpdVZsNta+oAs9Ev2M6gAkBs5kliiEByUFzsJbjGF0qRgC9y9E2ti5Fd4ZCgcGg1PNsskd53GjvJ5P1GiEEbYxc55WKwvlb6lYpRZN8wuVShnCnnosDQ3hEai+pn8C6BwGpoSSxSCeyuOwdrbtGiKDqc9Ff+AablxzQ0jlOUhO4bQbiyFCqUReT3qob7mHKnNFUZflHO8jlQtUSjfeIx9k1uRRTr5arNIT+fwpdhdP5zEWpesHlaAjFchWIvCamWMlCyfNoz2aN4BCveycfFinkJ3pmucNSMfMtE9moPreS87GAiu7Dhjt3fE17YmVk2UfY1s1MZxMFqhPrwJJJYohI4GDwwvU3iOspLFmb+9dqfTgeIKOhm9C7WsMeIw5GiavhvZzxjzl0xhJvG4XGHFZahGr0luTN5LyNWvemROoqalxrE9Zwm8923mZJIr1IEqqcQShVOnHaLcQ6TQZx1j9twaTNMLw8jo6csOIEzM+R0MGEFjK7XAWGhghfoEALFWL1Eoa5KxCGhnQJVrMp0KA0sP3dG2HYGaRq2SY3c2WhcrjJk995E5J+uyc0uMK1hhJvF4a+546B/GYXjIzimZP+JD9tnApsbud3MUsg9OII1aZcmSNGePhkIhEV7CXrNQITRXf2w1tKM8h/kKZTcfnax1gTWZse4KeyyO9cIRgE+JL6T0JNt1sHYKTIX56r1QoQrZ8c5UYIjP5ztzFapSirLDdZSNMJxtP5ycQORedAJ8kK3AXWM10EF+9m6PpRBLLFAIbc05baWh413RlbkKC86GRvWsY46HED3U8u0C6sAie0JpKxQVWkssXx8GTsiVHm7yOjRPYeHR0HlfYc1pVKH7nnkMix7ntCJHYS6xaI2/BY9KrHPkVPA1nnXNU9h1hlJF3t/bszbI3HeAcFvtbdjH17gKG9tqq7dwn0aFJodT1KMNd/Xoh9r5vLUF1NEWHi9bsL7OarozL4XMA09PB0vz0E72KGx0QGKhQn2wY8Q+rUs9w6NzNdibSwPYazt3jyODReCFms/g4bJtbY05CntOWzDMco32KWx0gqhMoR5URJVssVislvRkRs4WbIXN0P0fAEARwb6FvZaWc4CsQ3TXFrqRDB2z0jWVe4CGV2Gjk+67lux5v2d4zzsfYKyfLsr3vI+8G5kwj8squ2f1BPU0dI+TFA/07D34FTYmYnAt+91isuk5DDi0q065QrmMdbNWU8xuocJs5uVYten7haJAYWMSxWUKxRSSWR1hyD7aPzuUKoTWnLh2PsoqHxcq1KHfbgDtBfPMBYoUComs/ND6YTdmgZpHRSFjj+7Wjegavcjf+3bTi4zZU/G0ssl7LpRCz11NuMO12neY1IZ8gn1+kVTg+Z3EtqV70kzSFdvD+frQc329iI3soue8ROPK8EJ+MG/YhjsunHHIZ3Fn3fMEYLLYsTfD4VsNjSAIgiCIv+bw4O7XJU7YBwY4YWAcIXAob8jDfXcGO+gvQf9UpRecPDDaP7ib9UtTsqcbtj2D0yd5ysMNiqDXJz+McMIV/tI3uCFLO+Uc7tNhT3348owfejM9hO8flKXMvpt/P5cR55/Ho/E3/GzO5dkd+bvr94Uk/H4/80Nx/YpnYU7f0/jtHZ4Z0wexA7/CS84HpyPx30uUMpMpd9lNA/j3AFv2HA6UVdgSKBDMiP/gv9Dnz9L+Eb/RCePUnLs8+FAoTG8pUMgh+XRsp4j3naUNZIkO+EsVSkP6h5eXl9oW+W7FR3zww4yPf+CTIByFjRs+wh/7/D59sl/hmN8XpezzLE56wK/4r33xnJcpHMny+inbgEo6Va0Q10r+JPLOj4IQlfay3xdVO++MDvn1NQoB7vODsWjIfoWHjtFZCqroA345E02o//IyFOuL8fX1fqZwdM2Ftdf7qMhS29tCZf4lp19o8PsrVLn7otbuiBu8Cnf456IUJD59OwdXonhfqPCbKpprlKvTDn/we2F/fhjE7Ib/nH3nRicnGgwKr0wVCuO4V+GI26GmWcpVXg9k+bdfrnAMRhziWmkrFIXxlP7J34Fsh0+G+SOOG6pUqB/u8JM/pbkd/Di1Uu5Q1qqGv1ihaF+cp8MbCo60x8Nv0ME95W9eKhybRXGHi7QPBTzOFY6wpZ85v//G8fdFys2VkVKZwsZYPFyMiSjl/kbypHYATtXIfp1XwztpyewJt6cdfKKJ7h/G2YsbGZX6WnS1fNa2U36iarAPCvu8ilMo6tjMcH5T9qQQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBLF6/B9RI+XqTiM9xAAAAABJRU5ErkJggg==">
+            </div> -->
+            <a class="home" href="trangchu.html">Home</a>
+            <a class="home" href="product.html">Products</a> 
+            <a class="home" href="giohang.html">Cart</a>
+            <a class="home" href="#">Contact</a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Tìm kiếm...">
+        </div>
+        <div class="icon bar">
+            <p id="glass"><i class="fa-solid fa-magnifying-glass"></i></p>
+            <p id="glass"><i class="fa-solid fa-cart-shopping icon-shopping"></i></p>
+            <div class="dropdown">
+                <span class="icon-user"><i class="fa-solid fa-user"></i></span>
+                <div class="dropdown-content">
+                    <a class="home" href="login.html"><p>Log in</p></a>
+                    <a class="home" href="register.html"><p>Register</p></a>
+                    <a class="home" href="main_user.html"><p>Admin</p></a>
+                    <button onclick="dangxuat()"><p>Log Out</p></a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="slide fade">
+          <img src="https://happy.live/wp-content/uploads/2018/09/1-Admont-ao.jpg" alt="Slide 1">
+        </div>
+        <div class="slide fade">
+            <img src="https://toquoc.mediacdn.vn/280518851207290880/2022/11/19/khong-gian-mo-uoc-cua-cac-em-nho-lan-dau-xuat-hien-o-viet-nam-7636465046253956660-16687908841481785452868.jpg" alt="Slide 2">
+        </div>
+        <div class="slide fade">
+          <img src="https://files.dientuungdung.vn/sites/default/files/1115/z4985759790834_90ee9d2b5d503c3c6ef9cc824ee7e986.jpg" alt="Slide 3">
+        </div>
+      </div>
+    <div class="products">
+        <div id="feature">
+            <!-- <div class="card">
+                    <div class="img-infor">
+                        <img src="https://vangogh.teespring.com/v3/image/s1v36pmTeej1_MSjujepiLoDngU/480/560.jpg">
+                    </div>
+                    <div class="infor">
+                        <h5 class="product-name"> T-shirt </h5>
+                        <h6>
+                            <b>Price:</b>
+                            100.000đ - 500.000đ
+                        </h6>
+                        <button class="add-to-cart" onclick="addtoCart()">Add to cart</button>
+                    </div>
+                </div> -->
+        </div>
+    </div>
+</div>
+<div id="listCard">
+
+</div>
+<button id="SaveProduct">Save</button>
+<button id="PushProduct">Push</button>
+<div class="ht">
+    <img src="https://png.pngtree.com/template/20191011/ourmid/pngtree-e-book-logo-design---modern-technology-image_317099.jpg">
+    <div>
+        <h5> ĐỊA CHỈ </h5>
+        <p> Địa chỉ email:vudanhnam268@GMAIL.COM </p>
+        <p> SĐT:0975688771 </p>
+        <p>  </p>
+    </div>
+    <div>
+        <h5> SẢN PHẨM </h5>
+        <p> Sách </p>
+        <p> sách </p>
+        <p> sách </p>
+    </div>
+    <div>
+        <h5> SÁCH BÁN CHẠY </h5>
+        <p>  </p>
+        <p>  </p>
+        <p>  </p>
+    </div>
+    <div>
+        <h5> HỖ TRỢ </h5>
+        <p> Trung tâm trợ giúp khách hàng </p>
+        <p> Hình thức thanh toán </p>
+        <p> Chính sách bảo mật </p>
+        <p> Hỗ trợ thông </p>
+    </div>
+
+</div>
+<script src="slide.js"></script>
+<script src="./trangchu.js"></script> 
+</body>
+</html>

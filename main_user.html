@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng </title>
+    <link rel="stylesheet" href="main_user.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Quản Lý</h2>
+        <ul>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="main_user.html">Quản Lý Người Dùng</a></li>
+            <li><a href="#reports">Báo Cáo</a></li>
+            <li><a href="#settings">Cài Đặt</a></li>
+            <li><a href="#logout" onclick="dangxuat()">Đăng Xuất</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Quản lý người dùng</h1>
+        <div class="actions">
+            <button id="addusertBtn">+ Thêm tài khoản</button>
+        </div>
+        <!-- Modal để thêm/sửa sản phẩm -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Thêm/Sửa sản phẩm</h2>
+            <form id="userForm">
+                <label for="userId">Mã người dùng:</label>
+                <input type="text" id="userId" name="userId" required>
+
+                <label for="userName">Tên người dùng:</label>
+                <input type="text" id="userName" name="userName" required>
+
+                <label for="userEmail">Gmail:</label>
+                <input type="text" id="userEmail" name="userEmail" required>
+
+                <label for="userNumbers">Sđt:</label>
+                <input type="number" id="userNumbers" name="userNumbers" required>
+
+                <label for="userAddress">Địa chỉ:</label>
+                <input type="text" id="userAddress" name="userAddress" required>
+
+                <label for="userRole">Quyền hạn:</label>
+                <select id="userRole" name="userRole">
+                    <option value="người">user</option>
+                    <option value="admin">admin</option>
+                </select>
+
+                <label for="usertPassword">Mật khẩu:</label>
+                <input type="text" id="userPassword" name="userPassword" required>
+
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+        <div id="user-list"></div>  
+        <table>
+          <thead>
+              <tr>
+                  <th>Tên người dùng</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+                  <th>Địa chỉ</th>
+                  <th>Quyền hạn</th>
+                  <th>Mật khẩu</th>
+                  <th>Thao tác</th>
+              </tr>
+          </thead>
+          <tbody id="userTableBody">
+              <!-- Thêm các hàng khác tương tự -->
+          </tbody>
+      </table>    
+    </div>
+    <script>
+      let currentUser= JSON.parse(localStorage.getItem("currentUser"));
+      if(currentUser.role!=="admin")
+      {
+        window.location.href="./trangchu.html";
+      }
+      function dangxuat()
+      {
+        localStorage.removeItem("currentUser");
+        window.location.href="./login.html";
+      }
+      
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      function renderUsers() {
+        userTableBody.innerHTML = '';
+        users.forEach((users, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${users.userName}</td>
+                <td>${users.email}</td>
+                <td>${users.numbers}</td>
+                <td>${users.address}</td>
+                <td>${users.role}</td>
+                <td>${users.password}</td>
+                <td>
+                    <button onclick="editUser(${index})">Sửa</button>
+                    <button onclick="deleteUser(${index})">Xóa</button>
+                </td>
+            `;
+            userTableBody.appendChild(row);
+        });
+    }
+    renderUsers();
+
+    userForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const newUser = {
+            id: userForm.userId.value,
+            name: userForm.userName.value,
+            email: userForm.userEmail.value,
+            numbers: userForm.userNumbers.value,
+            address: userForm.userAddress.value,
+            role: userForm.userRole.value
+        };
+        users.forEach(itemUser => {
+            if(itemUser.id=== newUser.id){
+                itemUser.name=newUser.name
+                itemUser.email=newUser.email
+                itemUser.numbers=newUser.numbers
+                itemUser.address=newUser.address
+                itemUser.role=newUser.role
+                localStorage.setItem("users",JSON.stringify(users));
+                alert("cập nhật dữ liệu thành công");
+                renderUsers();
+                return
+            }
+         });
+         users.push(newUser);
+        localStorage.setItem('users',JSON.stringify(users));
+        alert('Tài khoản đã được thêm thành công!');
+            userModal.style.display = 'none';
+            renderUsers();
+     });
+
+    window.editUser = function(index) {
+        const user = users[index];
+        userForm.userId.value = users.id;
+        userForm.userName.value = users.name;
+        userForm.userEmail.value = users.email;
+        userForm.userNumbers.value = users.numbers;
+        userForm.userAddress.value = users.address;
+        userForm.userRole.value = users.role;
+        userForm.userPassword.value = users.password
+        userModal.style.display = 'flex';
+
+    };
+
+
+    window.deleteUser = function(index) {
+        users.splice(index, 1);
+        localStorage.setItem("users",JSON.stringify(users));
+        alert("xóa thành công")
+        renderUsers();
+    };
+
+
+//thêm sản phẩm  điền thông tin vào product
+document.getElementById('userForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const user = {
+            id: userForm.userId.value,
+            name: userForm.userName.value,
+            email: userForm.userEmail.value,
+            numbers: userForm.userNumbers.value,
+            address: userForm.userAddress.value,
+            role: userForm.userRole.value,
+            password: userForm.userPassword.value,
+        };
+    users.forEach(itemUser => {
+        if(itemUser.id=== users.id){
+            itemUser.name=users.name
+            itemUser.email=users.email
+            itemUser.numbers=users.numbers
+            itemUser.address=users.address
+            itemUser.role=users.role
+            itemUser.password=Users.password
+            localStorage.setItem("users",JSON.stringify(users));
+            alert("cập nhật dữ liệu thành công");
+            renderUsers();
+            return
+        }
+    });
+    
+    // const userName = document.getElementById('userName').value;
+    // const userEmail = document.getElementById('userEmail').value;
+    // const userNumbers = document.getElementById('userNumbers').value;
+
+    // const newuser = {
+    //   id: Date.now(), // Tạo ID duy nhất dựa trên thời gian hiện tại
+    //   name: usertName,
+    //   email: parseFloat(userEmail),
+    //   numbers: parseInt(userNumbers, 10)
+    // };
+});
+// let idIndex = document.createElement('id');
+//         tdIndex.textContent = index + 1;
+//         tr.appendChild(idIndex);
+      </script>
+    </body>
+    </html>

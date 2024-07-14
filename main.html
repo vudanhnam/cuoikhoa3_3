@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sản Phẩm</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Quản Lý</h2>
+        <ul>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="main_user.html">Quản Lý Người Dùng</a></li>
+            <li><a href="#reports">Báo Cáo</a></li>
+            <li><a href="#settings">Cài Đặt</a></li>
+            <li><a href="#logout">Đăng Xuất</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Quản lý sản phẩm</h1>
+        <div class="actions">
+            <button id="addProductBtn">+ Thêm sản phẩm</button>
+        </div>
+        <!-- Modal để thêm/sửa sản phẩm -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Thêm/Sửa sản phẩm</h2>
+            <form id="productForm">
+                <label for="productId">Mã SP:</label>
+                <input type="text" id="productId" name="productId" required>
+
+                <label for="productName">Tên SP:</label>
+                <input type="text" id="productName" name="productName" required>
+
+                <label for="productImage">Link hình ảnh:</label>
+                <input type="text" id="productImage" name="productImage" required>
+
+                <label for="productPrice">Giá:</label>
+                <input type="number" id="productPrice" name="productPrice" required>
+
+                <label for="productQuantity">Số lượng:</label>
+                <input type="number" id="productQuantity" name="productQuantity" required>
+
+                <label for="productStatus">Trạng thái:</label>
+                <select id="productStatus" name="productStatus">
+                    <option value="Còn hàng">Còn hàng</option>
+                    <option value="Hết hàng">Hết hàng</option>
+                </select>
+
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Danh mục</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <!-- Thêm các hàng khác tương tự -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const addProductBtn = document.getElementById('addProductBtn');
+    const productModal = document.getElementById('productModal');
+    const closeBtn = document.querySelector('.modal-content .close');
+    const productForm = document.getElementById('productForm');
+    const productTableBody = document.getElementById('productTableBody');
+
+    let products = JSON.parse(localStorage.getItem("product")) || [];
+
+    addProductBtn.addEventListener('click', () => {
+        productForm.reset();
+        productModal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        productModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === productModal) {
+            productModal.style.display = 'none';
+        }
+    });
+
+    productForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const product = {
+            id: productForm.productId.value,
+            name: productForm.productName.value,
+            image: productForm.productImage.value,
+            price: productForm.productPrice.value,
+            quantity: productForm.productQuantity.value,
+            status: productForm.productStatus.value
+        };
+    products.forEach(itemProduct => {
+        if(itemProduct.id=== product.id){
+            itemProduct.name=product.name
+            itemProduct.image=product.image
+            itemProduct.image=product.image
+            itemProduct.price=product.price
+            itemProduct.quantity=product.quantity
+            itemProduct.status=product.status
+            localStorage.setItem("product",JSON.stringify(products));
+            alert("cập nhật dữ liệu thành công");
+            renderProducts();
+            return
+        }
+    });
+    products.push(product);
+
+    localStorage.setItem('product', JSON.stringify(products));
+    alert('Sản phẩm đã được thêm thành công!');
+        productModal.style.display = 'none';
+        renderProducts();
+    });
+
+    function renderProducts() {
+        productTableBody.innerHTML = '';
+        products.forEach((product, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td> <img src=${product.image}></td>
+                <td>${product.price}</td>
+                <td>${product.quantity}</td>
+                <td>${product.status}</td>
+                <td>
+                    <button onclick="editProduct(${index})">Sửa</button>
+                    <button onclick="deleteProduct(${index})">Xóa</button>
+                </td>
+            `;
+            productTableBody.appendChild(row);
+        });
+    }
+    renderProducts();
+
+    window.editProduct = function(index) {
+        const product = products[index];
+        productForm.productId.value = product.id;
+        productForm.productName.value = product.name;
+        productForm.productImage.value = product.image;
+        productForm.productPrice.value = product.price;
+        productForm.productQuantity.value = product.quantity;
+        productForm.productStatus.value = product.status;
+        productModal.style.display = 'flex';
+
+    };
+
+
+    window.deleteProduct = function(index) {
+        products.splice(index, 1);
+        localStorage.setItem("product",JSON.stringify(products));
+        renderProducts();
+    };
+});
+
+//thêm sản phẩm  điền thông tin vào product
+document.getElementById('productForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const product = {
+            id: productForm.productId.value,
+            name: productForm.productName.value,
+            image: productForm.productImage.value,
+            price: productForm.productPrice.value,
+            quantity: productForm.productQuantity.value,
+            status: productForm.productStatus.value
+        };
+    products.forEach(itemProduct => {
+        if(itemProduct.id=== product.id){
+            itemProduct.name=product.name
+            itemProduct.image=product.image
+            // itemProduct.category=product.category
+            itemProduct.price=product.price
+            itemProduct.quantity=product.quantity
+            itemProduct.status=product.status
+            localStorage.setItem("product",JSON.stringify(products));
+            alert("cập nhật dữ liệu thành công");
+            renderProducts();
+            return
+        }
+    });
+    
+    const productName = document.getElementById('productName').value;
+    const productPrice = document.getElementById('productPrice').value;
+    const productQuantity = document.getElementById('productQuantity').value;
+
+    const newProduct = {
+      id: Date.now(), // Tạo ID duy nhất dựa trên thời gian hiện tại
+      name: productName,
+      price: parseFloat(productPrice),
+      quantity: parseInt(productQuantity, 10)
+    };
+
+    // let products = JSON.parse(localStorage.getItem('product')) || [];
+    // products.push(newProduct);
+
+    // localStorage.setItem('product', JSON.stringify(products));
+    // alert('Sản phẩm đã được thêm thành công!');
+    // // Reset form sau khi thêm sản phẩm
+    // document.getElementById('productForm').reset();
+
+    // // Thông báo sản phẩm đã được thêm
+    
+  });
+    </script>
+</body>
+</html>

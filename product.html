@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Sản phẩm - Sách</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header>
+        <!-- <div class="logo">Logo</div> -->
+        <nav>
+            <ul>
+                <li><a href="trangchu.html">Home</a></li>
+                <li><a href="allproduct.html">Product</a></li>
+                <li><a href="giohang.html">Cart</a></li>
+                <li><a href="#">Contact </a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Tìm kiếm...">
+        </div>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <img src="cart-icon.png" alt="Giỏ Hàng">
+        </div>
+    </header>
+    
+    <div class="product-detail">
+        <div class="product-image">
+            <img src="book-cover.jpg" id="hinhanh" alt="Book Cover">
+        </div>
+        <div class="product">
+            <h1 class="product-title" id="tensach" >Tên Sách</h1>
+            <p class="product-author" id="author">Tác giả: John Doe</p>
+            <p class="product-price" id="price">$20.00</p>
+            <p class="product-description" id="infor">
+                Đây là mô tả về cuốn sách. Cuốn sách này bao gồm những thông tin chi tiết và thú vị về chủ đề XYZ. Rất phù hợp cho những ai yêu thích đọc sách và tìm hiểu về XYZ.
+            </p>
+            <div class="product-reviews" id="review">
+                <h3>Đánh giá:</h3>
+                <ul>
+                    <li>★★★★★ - Tuyệt vời!</li>
+                    <li>★★★★☆ - Rất tốt</li>
+                    <li>★★★☆☆ - Khá tốt</li>
+                </ul>
+            </div>
+            <button class="add-to-cart">Thêm Vào Giỏ Hàng</button>
+        </div>
+    </div>
+    <script>  
+        const urlparams=new URLSearchParams(window.location.search);
+        const id=urlparams.get("id");
+        console.log(id);
+
+        const allProduct= JSON.parse(window.localStorage.getItem("product"));
+        let product="";
+        for(let i=0; i<allProduct.length; i++)
+        {
+            let item=allProduct[i];
+            if(item.id===id)
+            {
+                product=item;
+            }
+        }
+        console.log(product);
+        let nameSach= document.getElementById("tensach");
+        nameSach.innerText=product.name;
+        let hinhanh=document.getElementById("hinhanh");
+        console.log(hinhanh);
+        hinhanh.setAttribute("src",product.image)
+        let tacgia=document.getElementById("author")
+        tacgia.innerText=product.author;
+        let gia= document.getElementById("price")
+        gia.innerText=product.price
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const cartCountElement = document.querySelector('.cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // const productElement = event.target.closest('.product');
+            // const productId = productElement.getAttribute('data-id');
+            // const productName = productElement.getAttribute('data-name');
+            // const productPrice = productElement.getAttribute('data-price');
+
+            // const product = {
+            //     id: id,
+            //     name: productName,
+            //     price: productPrice,
+            //     quantity: 1
+            // };
+
+            addToCart(product);
+        });
+    });
+
+    function addToCart(product) {
+        console.log(product)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountElement.textContent = totalItems;
+    }
+
+    updateCartCount(); // Update cart count on page load
+});
+    </script>
+</body>
+</html>

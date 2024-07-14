@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm</title>
+    <link rel="stylesheet" href="giohang.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Logo</div>
+        <nav>
+            <ul>
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Sản Phẩm</a></li>
+                <li><a href="#">Giỏ Hàng</a></li>
+                <li><a href="#">Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Tìm kiếm...">
+        </div>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <img src="cart-icon.png" alt="Giỏ Hàng">
+        </div>
+    </header>
+    <main>
+        <h1>Danh Sách Sản Phẩm</h1>
+        <!-- Thêm nhiều sản phẩm hơn nếu cần -->
+        <div id="cart-items"></div>
+        <button onclick="xoa()" type="button">Xóa</button>
+    </main>
+    <script src="giohang.js"></script>
+</body>
+</html>
